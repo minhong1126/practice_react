@@ -1,13 +1,14 @@
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware'
 
-const store = (set) => ({
+const useLoadingStore = create((set) => ({
     loading: true,
-    setLoading: () => set(() => ({loading: false})),
+    setLoading: () => set(() => ({loading: false}))
+}));
+
+const useCoinsStore = create((set) => ({
     coins: [],
-    setCoins: () => set((state) => ({coins: state}))
-})
+    setCoins: (state) => set(() => ({coins: state})) 
+}));
 
-const useStore = create(devtools(store));
 
-export default useStore;
+export { useLoadingStore, useCoinsStore };
